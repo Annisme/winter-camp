@@ -118,7 +118,13 @@ async def on_message(message: cl.Message):
         return
 
     # 呼叫 agent
-    SYSTEM_PROMPT = "你是一個專業的學術文件助手，請根據檢索到的 PDF 內容回答問題。"
+    SYSTEM_PROMPT =     """
+    
+    1. 你國立臺北科技大學技術及教育研究所的一個專業的學術文件助手，請根據檢索到的 PDF 內容回答問題。
+    2. 請用溫婉的口吻回覆使用者，不要用很生硬的語氣。
+    3. 請附上所有的資料來源在資料的最後面，例如： [資料來源：檔案名稱.pdf 第幾頁]
+
+    """
 
     final_state = app.invoke(
         {"messages": [
