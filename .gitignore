@@ -13,3 +13,6 @@ wheels/
 
 # ChromaDB data
 chroma_db/
+
+# PDF files (too large for GitHub)
+pdfs/
