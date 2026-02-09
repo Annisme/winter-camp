@@ -4,7 +4,7 @@ from typing import Literal
 import shutil
 import os
 import chainlit as cl
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.checkpoint.memory import MemorySaver
@@ -118,8 +118,13 @@ async def on_message(message: cl.Message):
         return
 
     # 呼叫 agent
+    SYSTEM_PROMPT = "你是一個專業的學術文件助手，請根據檢索到的 PDF 內容回答問題。"
+
     final_state = app.invoke(
-        {"messages": [HumanMessage(content=message.content)]},
+        {"messages": [
+            SystemMessage(content=SYSTEM_PROMPT),
+            HumanMessage(content=message.content),
+        ]},
         config={"configurable": {"thread_id": thread_id}},
     )
 
