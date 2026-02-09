@@ -16,3 +16,7 @@ chroma_db/
 
 # PDF files (too large for GitHub)
 pdfs/
+
+# Processed files tracking
+processed_files.json
+
